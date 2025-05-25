@@ -15,11 +15,11 @@ gear = "high" # only if geared mode is selected, "low" or "high"
 dead_zone_joystick = 5
 dead_zone_trigger = 1
 #--- THRESHOLD # ms ----
-remote_search_threshold = 4000
+remote_search_threshold = 10000
 mode_switch_threshold = 5000
 gear_switch_threshold = 3000
 shutdown_switch_threshold = 4000
-inactivity_timeout = 600000
+inactivity_timeout = 1200000
 after_return_threshold = 1000
 after_straight_threshold = 1000
 battery_check_threshold = 10000
