@@ -9,13 +9,13 @@ print("----------------------------------")
 # <------------------ Configuration Parameters ------------------->
 remote_name = "M3L1H_remote" # for lego controller 88010, can be "" string if not used
 #--- MODE ----
-mode = "acceleration" # "acceleration" or "geared"
+mode = "geared" # "acceleration" or "geared"
 gear = "high" # only if geared mode is selected, "low" or "high"
 #--- JOYSTICK ----
 dead_zone_joystick = 5
 dead_zone_trigger = 1
 #--- THRESHOLD # ms ----
-remote_search_threshold = 10000
+remote_search_threshold = 20000
 mode_switch_threshold = 5000
 gear_switch_threshold = 3000
 shutdown_switch_threshold = 4000
@@ -38,9 +38,9 @@ fast_acceleration = 10000
 
 # Custom Colors
 Color.XBOX_GREEN = Color(h=119.45, s=89.34, v=47.84)
-Color.ACCELERATION = Color(h=35, s=100, v=100)
+Color.HIGH = Color(h=35, s=100, v=100)
 Color.LOW = Color(h=190, s=100, v=100)
-Color.HIGH = Color(h=240, s=100, v=100)
+Color.ACCELERATION = Color(h=240, s=100, v=100)
 Color.CRUISE_CONTROL = Color(h=6, s=70, v=70)
 
 # Initialize hub and motors
