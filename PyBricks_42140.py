@@ -38,9 +38,9 @@ fast_acceleration = 10000
 
 # Custom Colors
 Color.XBOX_GREEN = Color(h=119.45, s=89.34, v=47.84)
-Color.ACCELERATION = Color(h=35, s=100, v=100)
-Color.LOW = Color(h=190, s=100, v=100)
-Color.HIGH = Color(h=240, s=100, v=100)
+Color.ACCELERATION = Color(h=35, s=100, v=100) #orange
+Color.LOW = Color(h=190, s=100, v=100) # cyan
+Color.HIGH = Color(h=240, s=100, v=100) # cornflower
 Color.CRUISE_CONTROL = Color(h=6, s=70, v=70)
 
 # Initialize hub and motors
