@@ -1,5 +1,3 @@
-# CLAUDE.md — AI Assistant Guide
-
 ## Project Overview
 
 This repository contains a single MicroPython script (`PyBricks_42140.py`) that runs on a **LEGO Technic Hub** inside the LEGO 42140 App-Controlled Transformation Vehicle. It replaces the official LEGO app with custom controller support for a **LEGO Remote (88010)** or an **Xbox Controller**, and was designed to let a parent and young child share the same vehicle with age-appropriate speed settings.
