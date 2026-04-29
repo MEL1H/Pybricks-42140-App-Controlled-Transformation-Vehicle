@@ -14,7 +14,7 @@ gear = "high" # only if geared mode is selected, "low" or "high"
 #--- JOYSTICK ----
 dead_zone_joystick = 5
 dead_zone_trigger = 1
-xbox_drive_input = "trigger"  # "trigger" or "right_stick"
+xbox_drive_input = "right_stick"  # "trigger" or "right_stick"
 #--- THRESHOLD # ms ----
 remote_search_threshold = 20000
 mode_switch_threshold = 5000
