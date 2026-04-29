@@ -543,41 +543,43 @@ while True:
                 connect_controller()
         else:
             xbox_program_exit_timer.reset()
-                
 
         dead_zoned_left_trigger = apply_dead_zone(left_trigger, dead_zone_trigger)
         dead_zoned_right_trigger = apply_dead_zone(right_trigger, dead_zone_trigger)
         dead_zoned_left_x_axis = apply_dead_zone(left_x_axis, dead_zone_joystick)
+        dead_zoned_right_x_axis = apply_dead_zone(right_x_axis, dead_zone_joystick)
         dead_zoned_right_y_axis = apply_dead_zone(right_y_axis, dead_zone_joystick)
 
         if xbox_drive_input == "trigger":
             speed_vertical = dead_zoned_left_trigger - dead_zoned_right_trigger
+            steering_axis = dead_zoned_left_x_axis
         else:
-            # right stick up = positive Y = forward
             speed_vertical = dead_zoned_right_y_axis
+            steering_axis = dead_zoned_right_x_axis
+
         if speed_vertical > 0:
             joystick_sensivity = abs(speed_vertical)/100
-            calibrated_left_x_axis = dead_zoned_left_x_axis * joystick_sensivity
+            calibrated_left_x_axis = steering_axis * joystick_sensivity
             left_speed = (speed_vertical + calibrated_left_x_axis) * joystick_drive_speed
             right_speed = (speed_vertical - calibrated_left_x_axis) * joystick_drive_speed
         elif speed_vertical < 0:
             joystick_sensivity = abs(speed_vertical)/100
-            calibrated_left_x_axis = dead_zoned_left_x_axis * joystick_sensivity
+            calibrated_left_x_axis = steering_axis * joystick_sensivity
             left_speed = (speed_vertical - calibrated_left_x_axis) * joystick_drive_speed
             right_speed = (speed_vertical + calibrated_left_x_axis) * joystick_drive_speed
         else:
-            joystick_sensivity = (abs(dead_zoned_left_x_axis)/100)/2
-            calibrated_left_x_axis = dead_zoned_left_x_axis * joystick_sensivity
+            joystick_sensivity = (abs(steering_axis)/100)/2
+            calibrated_left_x_axis = steering_axis * joystick_sensivity
             left_speed = (calibrated_left_x_axis) * joystick_drive_speed
             right_speed = (-calibrated_left_x_axis) * joystick_drive_speed
         
-        if dead_zoned_left_x_axis != 0:
-            if speed_vertical != 0 and (abs(speed_vertical)+abs(dead_zoned_left_x_axis)) < 100:
-                joystick_acceleration_ratio = int(moderate_acceleration + (((((abs(speed_vertical)+abs(dead_zoned_left_x_axis))/2) - 0) * (fast_acceleration - moderate_acceleration)) / (100 - 0)))
-            elif (abs(speed_vertical)+abs(dead_zoned_left_x_axis)) > 100:
+        if steering_axis != 0:
+            if speed_vertical != 0 and (abs(speed_vertical)+abs(steering_axis)) < 100:
+                joystick_acceleration_ratio = int(moderate_acceleration + (((((abs(speed_vertical)+abs(steering_axis))/2) - 0) * (fast_acceleration - moderate_acceleration)) / (100 - 0)))
+            elif (abs(speed_vertical)+abs(steering_axis)) > 100:
                 joystick_acceleration_ratio = int(fast_acceleration)
             else:
-                joystick_acceleration_ratio = int(moderate_acceleration + (((((abs(dead_zoned_left_x_axis))/1) - 0) * (fast_acceleration - moderate_acceleration)) / (100 - 0)))
+                joystick_acceleration_ratio = int(moderate_acceleration + (((((abs(steering_axis))/1) - 0) * (fast_acceleration - moderate_acceleration)) / (100 - 0)))
         else:
             if speed_vertical != 0:
                 joystick_acceleration_ratio = int(moderate_acceleration + (((((abs(speed_vertical))/1) - 0) * (fast_acceleration - moderate_acceleration)) / (100 - 0)))
