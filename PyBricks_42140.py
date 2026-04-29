@@ -14,6 +14,7 @@ gear = "high" # only if geared mode is selected, "low" or "high"
 #--- JOYSTICK ----
 dead_zone_joystick = 5
 dead_zone_trigger = 1
+xbox_drive_input = "trigger"  # "trigger" or "right_stick"
 #--- THRESHOLD # ms ----
 remote_search_threshold = 20000
 mode_switch_threshold = 5000
@@ -547,9 +548,13 @@ while True:
         dead_zoned_left_trigger = apply_dead_zone(left_trigger, dead_zone_trigger)
         dead_zoned_right_trigger = apply_dead_zone(right_trigger, dead_zone_trigger)
         dead_zoned_left_x_axis = apply_dead_zone(left_x_axis, dead_zone_joystick)
+        dead_zoned_right_y_axis = apply_dead_zone(right_y_axis, dead_zone_joystick)
 
-        speed_vertical = dead_zoned_left_trigger - dead_zoned_right_trigger
-
+        if xbox_drive_input == "trigger":
+            speed_vertical = dead_zoned_left_trigger - dead_zoned_right_trigger
+        else:
+            # right stick up = positive Y = forward
+            speed_vertical = dead_zoned_right_y_axis
         if speed_vertical > 0:
             joystick_sensivity = abs(speed_vertical)/100
             calibrated_left_x_axis = dead_zoned_left_x_axis * joystick_sensivity
